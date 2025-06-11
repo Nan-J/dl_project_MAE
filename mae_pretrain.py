@@ -19,7 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("--mask_ratio", type=float, default=0.75)
     parser.add_argument("--total_epoch", type=int, default=2000)
     parser.add_argument("--warmup_epoch", type=int, default=200)
-    parser.add_argument("--model_path", type=str, default="vit-t-mae.pt")
+    parser.add_argument("--model_path", type=str, default="model/vit-t-mae.pt")
 
     args = parser.parse_args()
 
@@ -43,9 +43,7 @@ if __name__ == "__main__":
         download=True,
         transform=Compose([ToTensor(), Normalize(0.5, 0.5)]),
     )
-    dataloader = torch.utils.data.DataLoader(
-        train_dataset, load_batch_size, shuffle=True, num_workers=4
-    )
+    dataloader = torch.utils.data.DataLoader(train_dataset, load_batch_size, shuffle=True, num_workers=4)
     writer = SummaryWriter(os.path.join("logs", "cifar10", "mae-pretrain"))
     if torch.backends.mps.is_available():
         device = "mps"
