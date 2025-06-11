@@ -1,11 +1,8 @@
 import torch
-import timm
 import numpy as np
-
 from einops import repeat, rearrange
 from einops.layers.torch import Rearrange
-
-from timm.models.layers import trunc_normal_
+from timm.layers import trunc_normal_
 from timm.models.vision_transformer import Block
 
 def random_indexes(size : int):
